@@ -3,11 +3,15 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
+import through2 from 'through2'
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
+
+// const isDevelopment = (process.env.ENVIRONMENT !== "production");
+const isDevelopment = false;
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
@@ -22,6 +26,28 @@ gulp.task('styles', () => {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(reload({stream: true}));
+});
+
+gulp.task('javascript', () => {
+  return gulp.src('./app/scripts/main.js')
+    .pipe(through2.obj(function (file, enc, next){ // workaround for https://github.com/babel/babelify/issues/46
+     browserify({
+        entries: file.path,
+        debug: isDevelopment
+      }).bundle(function(err, res){
+        if (err) { return next(err); }
+        file.contents = res;
+        next(null, file);
+      });
+    }))
+    .on('error', function (error) {
+      console.log(error.stack);
+      this.emit('end');
+    })
+    .pipe(gulp.dest('./dist/scripts'))
+    .pipe($.if(isDevelopment, $.sourcemaps.init({loadMaps: true})))
+    .pipe($.if(isDevelopment, $.sourcemaps.write('.')))
+    .pipe(gulp.dest('.tmp/scripts'));
 });
 
 function lint(files, options) {
@@ -42,8 +68,8 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles'], () => {
-  const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
+gulp.task('html', ['javascript', 'styles'], () => {
+  const assets = $.useref.assets({searchPath: ['.tmp', 'app/*.html', '.']});
 
   return gulp.src('app/*.html')
     .pipe(assets)
@@ -90,7 +116,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'fonts'], () => {
+gulp.task('serve', ['styles', 'javascript', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -104,12 +130,15 @@ gulp.task('serve', ['styles', 'fonts'], () => {
 
   gulp.watch([
     'app/*.html',
-    'app/scripts/**/*.js',
+    '.tmp/scripts/*.js',
+    'node_modules/app/*.js',
     'app/images/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/scripts/**/*.js', ['javascript']);
+  gulp.watch('node_modules/app/*.js', ['javascript']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
@@ -156,7 +185,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['javascript', 'lint', 'html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
