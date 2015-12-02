@@ -39,7 +39,7 @@ var nuggetSmall = new Treasure({
 var rope = new Consumable({
     name: 'Rope',
     imageUrl: 'rope.png',
-    initialPrice: 1
+    initialPrice: 750
   },
   accountant,
   config
@@ -48,7 +48,7 @@ var rope = new Consumable({
 var bomb = new Consumable({
     name: 'Bomb',
     imageUrl: 'bomb.png',
-    initialPrice: 1
+    initialPrice: 750
   },
   accountant,
   config
