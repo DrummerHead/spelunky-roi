@@ -1,0 +1,13 @@
+.item {
+  float: left;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1em;
+  padding: 1em;
+}
+.item img {
+  display: block;
+}
+.item-selected {
+  border-color: red;
+}
