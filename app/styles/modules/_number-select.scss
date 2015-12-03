@@ -1,0 +1,25 @@
+.number-select-add,
+.number-select-number,
+.number-select-subtract {
+  display: block;
+  user-select: none;
+}
+.number-select {
+  background-color: teal;
+  font-family: monospace;
+  font-size: 2em;
+  text-align: center;
+}
+.number-select-add,
+.number-select-subtract {
+  cursor: pointer;
+}
+.number-select-add {
+  background-color: blue;
+}
+.number-select-number {
+  background-color: green;
+}
+.number-select-subtract {
+  background-color: brown;
+}

@@ -2,12 +2,13 @@
 'use strict';
 
 var config = require('config');
+var treasureItems = require('treasure-items');
 
 var Treasure = require('treasure-class');
 var Consumable = require('consumable-class');
 var Accountant = require('accountant-class');
+var NumberSelect = require('number-select-class');
 
-var treasureItems = require('treasure-items');
 
 var accountant = new Accountant(config);
 
@@ -38,6 +39,18 @@ new Consumable({
   accountant,
   config
 ).render();
+
+
+
+var areaSelect = new NumberSelect(0);
+var levelSelect = new NumberSelect(0);
+areaSelect.render(config.areaSelectElement);
+levelSelect.render(config.levelSelectElement);
+
+
+
+
+
 
 
 })();
