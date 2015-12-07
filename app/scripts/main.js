@@ -10,13 +10,16 @@ var Accountant = require('accountant-class');
 var Announcer = require('announcer-class');
 var NumberSelect = require('number-select-class');
 
-var accountant = new Accountant(config);
 var announcer = new Announcer();
 
+new Accountant(
+  announcer,
+  config
+);
+
 treasureItems.forEach(function(treasureItem){
-  treasureItem.instance = new Treasure(
+  new Treasure(
     treasureItem,
-    accountant,
     announcer,
     config
   ).render();
@@ -28,7 +31,6 @@ new Consumable({
     imageUrl: 'rope.png',
     initialPrice: 750
   },
-  accountant,
   announcer,
   config
 ).render();
@@ -38,22 +40,24 @@ new Consumable({
     imageUrl: 'bomb.png',
     initialPrice: 750
   },
-  accountant,
   announcer,
   config
 ).render();
 
 
+new NumberSelect({
+  id: 'area',
+  number: 1
+  },
+  announcer
+).render(config.areaSelectElement);
 
-var areaSelect = new NumberSelect({id: 'area', number: 1}, announcer);
-var levelSelect = new NumberSelect({id: 'level', number: 1}, announcer);
-areaSelect.render(config.areaSelectElement);
-levelSelect.render(config.levelSelectElement);
-
-
-
-
-
+new NumberSelect({
+    id: 'level',
+    number: 1
+  },
+  announcer
+).render(config.levelSelectElement);
 
 
 })();
