@@ -1,0 +1,21 @@
+.button {
+  display: inline-block;
+  padding: .85em 1em;
+  border: 1px solid transparent;
+  margin: 0 1rem 1rem 0;
+  font-size: 1.2em;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 0;
+  background-color: #2199e8;
+  color: #fff;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.25s ease-out;
+}
+.button:hover,
+.button:focus {
+  background: #1583cc;
+  color: #fff;
+}
