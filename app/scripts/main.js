@@ -1,6 +1,8 @@
 (function(){
 'use strict';
 
+require('fastclick')(document.body);
+
 var config = require('config');
 var treasureItems = require('treasure-items');
 
