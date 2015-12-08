@@ -5,6 +5,7 @@ import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import through2 from 'through2'
 import del from 'del';
+import {exec} from 'child_process'
 import {stream as wiredep} from 'wiredep';
 
 const $ = gulpLoadPlugins();
@@ -112,6 +113,14 @@ gulp.task('extras', () => {
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
+});
+
+gulp.task('jsdoc', (cb) => {
+  exec('jsdoc -c .jsdoc.json', function(err, stdout, stderr){
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
