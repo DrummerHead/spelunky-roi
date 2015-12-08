@@ -68,6 +68,13 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
+gulp.task('jscs', () => {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe($.jscs())
+    .pipe($.jscs.reporter())
+});
+
+
 gulp.task('html', ['javascript', 'styles'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app/*.html', '.']});
 
