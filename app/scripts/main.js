@@ -1,6 +1,11 @@
 (function(){
 'use strict';
 
+/**
+ * @file Starts the application
+ * @require module:fastclick
+ */
+
 require('fastclick')(document.body);
 
 var config = require('config');
