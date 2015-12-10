@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "no-new": 0,
+    "valid-jsdoc": [2, {
+      "prefer": {
+          "return": "returns"
+      },
+      "requireParamDescription": false,
+      "requireReturn": false,
+      "requireReturnDescription": false
+    }]
+  }
+}
