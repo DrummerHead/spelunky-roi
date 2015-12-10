@@ -115,7 +115,7 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('jsdoc', (cb) => {
+gulp.task('jsdoc', ['lint'], (cb) => {
   exec('jsdoc -c .jsdoc.json', function(err, stdout, stderr){
     console.log(stdout);
     console.log(stderr);
