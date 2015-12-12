@@ -19,7 +19,7 @@ var NumberSelect = require('number-select-class');
 
 var announcer = new Announcer();
 
-new Accountant(
+var accountant = new Accountant(
   announcer,
   config
 );
@@ -65,6 +65,10 @@ new NumberSelect({
   },
   announcer
 ).render(config.levelSelectElement);
+
+document.querySelector('#reset').addEventListener('click', function(){
+  accountant.resetAllAmounts();
+});
 
 
 })();
