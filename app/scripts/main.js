@@ -53,15 +53,19 @@ new Consumable({
 
 
 new NumberSelect({
-  id: 'area',
-  number: 1
+    id: 'area',
+    number: 1,
+    min: 1,
+    max: 5
   },
   announcer
 ).render(config.areaSelectElement);
 
 new NumberSelect({
     id: 'level',
-    number: 1
+    number: 1,
+    min: 1,
+    max: 4
   },
   announcer
 ).render(config.levelSelectElement);

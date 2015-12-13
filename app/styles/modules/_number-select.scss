@@ -23,3 +23,18 @@
 .number-select-subtract {
   background-color: brown;
 }
+.number-select-pulsate {
+  animation-name: pulsate;
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 .25em red;
+  }
+  100% {
+    box-shadow: 0 0 0 transparent;
+  }
+}
