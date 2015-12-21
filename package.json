@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
+    "inherits": "^2.0.1",
     "lodash": "^3.10.1"
   }
 }
