@@ -1,6 +1,7 @@
 node_modules
 !app/scripts/node_modules
 dist
+docs
 temp
 .tmp
 .sass-cache
