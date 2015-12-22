@@ -16,6 +16,7 @@ var Consumable = require('consumable-class');
 var Accountant = require('accountant-class');
 var Announcer = require('announcer-class');
 var NumberSelect = require('number-select-class');
+var LevelSelect = require('level-select-class');
 
 var announcer = new Announcer();
 
@@ -52,7 +53,7 @@ new Consumable({
 ).render();
 
 
-new NumberSelect({
+var numberSelectArea = new NumberSelect({
     id: 'area',
     number: 1,
     min: 1,
@@ -61,7 +62,7 @@ new NumberSelect({
   announcer
 ).render(config.areaSelectElement);
 
-new NumberSelect({
+var numberSelectLevel = new NumberSelect({
     id: 'level',
     number: 1,
     min: 1,
@@ -69,6 +70,13 @@ new NumberSelect({
   },
   announcer
 ).render(config.levelSelectElement);
+
+new LevelSelect(
+  numberSelectArea,
+  numberSelectLevel,
+  config
+);
+
 
 document.querySelector('#reset').addEventListener('click', function(){
   accountant.resetAllAmounts();
