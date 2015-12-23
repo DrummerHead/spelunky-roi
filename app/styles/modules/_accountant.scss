@@ -9,12 +9,16 @@ $separation: 12.5%;
 }
 .accountant-notes {
   width: 33.33333333%;
-  background-color: purple;
   float: left;
+  position: relative;
   text-align: center;
-  padding: 1em 0 .5em;
+  padding: .3em 0 .4em;
   line-height: 1;
   margin-top: 3.1rem;
+  border-style: solid;
+  border-width: 14px 22px 21px;
+  border-image: url('/images/textures/roll-box.png') 14 22 21 fill stretch;
+  @include text-border(#000);
 }
 .accountant-label {
   display: block;
@@ -24,14 +28,23 @@ $separation: 12.5%;
   font-size: 3em;
   font-weight: 900;
 }
+.accountant-left {
+  right: -1em;
+}
+.accountant-right {
+  left: -1em;
+}
 .accountant-big {
-  background-color: teal;
   font-size: 1.5em;
   margin-top: 0;
+  z-index: 7;
 }
 #invest {
 }
 #total {
+  border-style: solid;
+  border-width: 14px 22px 21px;
+  border-image: url('/images/textures/roll-box.png') 14 22 21 fill stretch;
 }
 #profit {
 }
