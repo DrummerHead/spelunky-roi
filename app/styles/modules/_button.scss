@@ -1,22 +1,26 @@
+$button-text-color: #ffd36e;
+
 .button {
   display: inline-block;
-  padding: .85em 1em;
-  border: 1px solid transparent;
+  padding: .3em .5em .4em;
+  border-style: solid;
+  border-width: 7px 9px 9px;
+  border-image: url('/images/textures/wood-button.png') 7 9 9 fill stretch;
   margin: 0 1rem 1rem 0;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1;
   vertical-align: middle;
   text-align: center;
   border-radius: 0;
   font-family: inherit;
-  background-color: #2199e8;
-  color: #fff;
+  color: $button-text-color;
+  background-color: transparent;
   cursor: pointer;
   appearance: none;
-  transition: all 0.25s ease-out;
+  transition: color 250ms ease-out;
+  @include text-border(#150c06);
 }
 .button:hover,
 .button:focus {
-  background: #1583cc;
-  color: #fff;
+  color: lighten($button-text-color, 15);
 }
