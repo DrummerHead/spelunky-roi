@@ -1,11 +1,14 @@
 @mixin text-border($color) {
-  text-shadow:  .1rem   .1rem  0 $color,
-                .1rem  -.1rem  0 $color,
-               -.1rem   .1rem  0 $color,
-               -.1rem  -.1rem  0 $color,
-                 0     -.15rem 0 $color,
-                .15rem   0     0 $color,
-                 0      .15rem 0 $color,
-               -.15rem   0     0 $color;
+  $border-width-diagonal: 0.1rem;
+  $border-width-orthogonal: $border-width-diagonal * 1.5;
 
+  text-shadow:
+                               0 #{-$border-width-orthogonal} 0 $color, // up
+    #{   $border-width-diagonal} #{  -$border-width-diagonal} 0 $color, // right up
+    #{ $border-width-orthogonal}                            0 0 $color, // right
+    #{   $border-width-diagonal} #{   $border-width-diagonal} 0 $color, // right down
+                               0 #{ $border-width-orthogonal} 0 $color, // down
+    #{  -$border-width-diagonal} #{   $border-width-diagonal} 0 $color, // left down
+    #{-$border-width-orthogonal}                            0 0 $color, // left
+    #{  -$border-width-diagonal} #{  -$border-width-diagonal} 0 $color; // left up
 }
