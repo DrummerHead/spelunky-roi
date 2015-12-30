@@ -1,11 +1,14 @@
 #level {
   position: absolute;
-  top: 14rem;
-  bottom: 10rem;
-  left: 9%;
+  top: 10rem;
+  left: -1.25em;
+  padding: .5em .75em .5em 1.25em;
   font-size: 1.5em;
-  background-color: pink;
   vertical-align: middle;
+  border-style: solid;
+  border-width: 47px 34px 29px;
+  border-image: url(/images/textures/jungle-block.png) 47 34 29 fill round;
+  @include text-border(#000);
 }
 .level-label,
 .level-area,
@@ -21,4 +24,7 @@
 .level-separator {
 }
 .level-level {
+}
+#next-level {
+  margin: 0;
 }
