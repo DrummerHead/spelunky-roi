@@ -1,6 +1,6 @@
 #level {
   position: absolute;
-  bottom: 12rem;
+  bottom: $extra-actions-separation;
   left: -1.25em;
   padding: .5em .75em .5em 1.25em;
   font-size: 1.5em;
@@ -24,7 +24,4 @@
 .level-separator {
 }
 .level-level {
-}
-#next-level {
-  margin: 0;
 }
