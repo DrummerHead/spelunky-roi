@@ -3,9 +3,20 @@
   position: absolute;
   top: 0;
   bottom: 0;
+  padding: 1.25em 1.75em;
 }
 .panel-right {
   right: 0;
+}
+.panel-right:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -22px;
+  width: 42px;
+  height: 100%;
+  background-image: url('/images/textures/post.png');
+  background-repeat: repeat-y;
 }
 .panel-left {
   left: 0;
