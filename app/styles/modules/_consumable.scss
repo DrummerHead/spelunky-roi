@@ -2,3 +2,10 @@
 }
 #consumable-list {
 }
+#consumable {
+  $selected-color: #88f14f;
+  .item-selected img,
+  .item-selected span {
+    filter: drop-shadow(0 0 0.85em rgba($selected-color, .5)) drop-shadow(0 0 0.25em lighten($selected-color, 5%));
+  }
+}
