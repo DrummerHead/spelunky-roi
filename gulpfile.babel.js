@@ -116,7 +116,7 @@ gulp.task('extras', () => {
 });
 
 gulp.task('jsdoc', ['lint'], (cb) => {
-  exec('jsdoc -c .jsdoc.json', function(err, stdout, stderr){
+  exec('npm run jsdoc', function(err, stdout, stderr){
     console.log(stdout);
     console.log(stderr);
     cb(err);
